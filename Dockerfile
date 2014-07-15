@@ -17,7 +17,8 @@ RUN git clone https://github.com/clvv/fasd.git fasd && \
     make -C fasd install && echo 'eval "$(fasd --init auto)"' >> /home/genee/.profile && rm -rf fasd
 
 # Add git prompt for genee
-ADD git_prompt.sh /home/genee/.git_prompt && echo '. $HOME/.git_prompt' >> /home/genee/.profile
+ADD git_prompt.sh /home/genee/.git_prompt
+RUN echo '. $HOME/.git_prompt' >> /home/genee/.profile
 
 
 VOLUME ["/data", "/etc/nginx/sites-enabled", "/var/log/nginx"]
