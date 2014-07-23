@@ -7,6 +7,7 @@ docker build -t iamfat/gini-dev gini-dev
 
 docker run --name gini-dev -v /dev/log:/dev/log -v /data:/data --privileged \
     -v /data/config/sites:/etc/nginx/sites-enabled \
+    -v /data/logs/supervisor:/var/log/supervisor \
     -v /data/logs/nginx:/var/log/nginx \
     -p 80:80 \
     -d iamfat/gini-dev
