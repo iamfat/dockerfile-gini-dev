@@ -12,6 +12,9 @@ RUN echo "zend_extension=test_helpers.so" > /etc/php5/mods-available/test_helper
 # Install PHPUnit and PHP-CS-Fixer
 RUN composer global require 'phpunit/phpunit:@stable' 'fabpot/php-cs-fixer:@stable' --prefer-dist
 
+# Make sure /var/lib/php5 accessible for php5-fpm
+RUN chmod a+wt,go-r /var/lib/php5
+
 # VOLUME ["/data", "/var/log/supervisor", "/etc/nginx/sites-enabled", "/var/log/nginx"]
 
 EXPOSE 9000
