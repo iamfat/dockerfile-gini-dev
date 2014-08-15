@@ -1,6 +1,11 @@
 FROM iamfat/gini
 MAINTAINER maintain@geneegroup.com
 
+ENV DEBIAN_FRONTEND noninteractive
+
+# Install bash-completion for easier use
+apt-get install -y bash-completion
+
 # Install XDebug
 RUN apt-get install -y php5-xdebug
 
