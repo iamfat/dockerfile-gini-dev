@@ -15,17 +15,17 @@ RUN echo "zend_extension=test_helpers.so" > /etc/php5/mods-available/test_helper
     php5enmod test_helpers
 
 # Install PHPUnit and PHP-CS-Fixer
-RUN composer global require 'phpunit/phpunit:@stable' 'fabpot/php-cs-fixer:@stable' --prefer-dist
-
-# Install "git-extras"
-RUN apt-get install -y bsdmainutils && \
-    (cd /tmp && git clone --depth 1 https://github.com/visionmedia/git-extras.git && cd git-extras && sudo make install)
+RUN composer global require -q --prefer-dist 'phpunit/phpunit:@stable' 'fabpot/php-cs-fixer:@stable'
 
 # Install "git-up"
 RUN apt-get install -y libgdbm-dev libncurses5-dev automake libtool bison libffi-dev && \
     (curl -sL https://get.rvm.io | bash -s stable) && \
     /bin/bash -c "source /etc/profile.d/rvm.sh && \
         rvm --quiet-curl install 2.1.2 && rvm use 2.1.2 --default && gem install git-up"
+
+# Install "git-extras"
+RUN apt-get install -y bsdmainutils && \
+    (git clone --depth 1 https://github.com/visionmedia/git-extras.git && cd git-extras && make install)
 
 EXPOSE 9000
 
