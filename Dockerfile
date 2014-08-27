@@ -4,7 +4,7 @@ MAINTAINER maintain@geneegroup.com
 ENV DEBIAN_FRONTEND noninteractive
 
 # Install bash-completion and vim for easier use
-RUN apt-get install -y bash-completion vim
+RUN apt-get install -y procps bash-completion vim
 
 # Install XDebug
 RUN apt-get install -y php5-xdebug
