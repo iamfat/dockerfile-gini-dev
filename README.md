@@ -8,6 +8,6 @@ docker build -t iamfat/gini-dev gini-dev
 export BASE_DIR=/mnt/sda1/data
 docker run --name gini-dev --privileged \
     -v /dev/log:/dev/log -v $BASE_DIR:/data \
-    --link mariadb:mysql --link redis:redis \
+    --link mysql:mysql --link redis:redis \
     -d iamfat/gini-dev
 ```
