@@ -27,6 +27,14 @@ RUN apt-get install -y libgdbm-dev libncurses5-dev automake libtool bison libffi
 RUN apt-get install -y bsdmainutils && \
     (git clone --depth 1 https://github.com/visionmedia/git-extras.git && cd git-extras && make install)
 
+# Install SonarQube Runner
+RUN apt-get install -y unzip openjdk-7-jre-headless && \
+    curl -sLo sonar-runner-dist-2.4.zip \
+        http://repo1.maven.org/maven2/org/codehaus/sonar/runner/sonar-runner-dist/2.4/sonar-runner-dist-2.4.zip && \
+    unzip sonar-runner-dist-2.4.zip -d /tmp && \
+    mv /tmp/sonar-runner-2.4 /usr/local/share/sonar-runner && \
+    echo 'export PATH="/usr/local/share/sonar-runner/bin:$PATH"' >> /etc/profile.d/sonar-runner.sh
+
 EXPOSE 9000
 
 CMD ["/usr/sbin/php5-fpm", "--nodaemonize", "--fpm-config", "/etc/php5/fpm/php-fpm.conf"]
