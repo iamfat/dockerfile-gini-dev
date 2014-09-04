@@ -35,6 +35,5 @@ RUN apt-get install -y unzip openjdk-7-jre-headless && \
     mv /tmp/sonar-runner-2.4 /usr/local/share/sonar-runner && \
     echo 'export PATH="/usr/local/share/sonar-runner/bin:$PATH"' >> /etc/profile.d/sonar-runner.sh
 
-EXPOSE 9000
-
-CMD ["/usr/sbin/php5-fpm", "--nodaemonize", "--fpm-config", "/etc/php5/fpm/php-fpm.conf"]
+# Set ENV to "development"
+RUN echo "export GINI_ENV=development">/etc/profile.d/gini.sh
