@@ -1,4 +1,4 @@
-FROM iamfat/gini
+FROM genee/gini
 MAINTAINER maintain@geneegroup.com
 
 ENV DEBIAN_FRONTEND noninteractive
