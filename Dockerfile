@@ -18,10 +18,7 @@ RUN curl -sLo /usr/lib/php5/20121212/test_helpers.so http://d.genee.cn/packages/
 RUN composer global require -q --prefer-dist 'phpunit/phpunit:@stable' 'fabpot/php-cs-fixer:@stable'
 
 # Install "git-up"
-RUN apt-get install -y libgdbm-dev libncurses5-dev automake libtool bison libffi-dev && \
-    (curl -sL https://get.rvm.io | bash -s stable) && \
-    /bin/bash -c "source /etc/profile.d/rvm.sh && \
-        rvm --quiet-curl install 2.1.2 && rvm use 2.1.2 --default && gem install git-up"
+RUN apt-get install -y python-pip && pip install git-up
 
 # Install "git-extras"
 RUN apt-get install -y bsdmainutils && \
