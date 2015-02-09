@@ -3,7 +3,7 @@ Docker Hub: genee/gini-dev
 
 ## Gini Dev Environment (PHPUnit + Gini + Composer + PHP5.5)
 ```bash
-docker build -t iamfat/gini-dev gini-dev
+docker build -t iamfat/gini-dev dockerfile-gini-dev
 
 export BASE_DIR=/mnt/sda1/data
 docker run --name gini-dev --privileged \
