@@ -30,3 +30,5 @@ RUN apt-get install -y unzip openjdk-7-jre-headless && \
 
 # Set ENV to "development"
 RUN echo "export GINI_ENV=development">/etc/profile.d/gini.sh
+
+RUN apt-get -y autoremove && apt-get -y autoclean && apt-get -y clean
