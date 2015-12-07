@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y procps bash-completion vim
 RUN \
     # Install XDebug
     curl -sLo /usr/lib/php/20151012/xdebug.so http://files.docker.genee.in/php-20151012/xdebug.so && \
-    echo "extension=xdebug.so" > /etc/php/mods-available/xdebug.ini && \
+    echo "zend_extension=xdebug.so" > /etc/php/mods-available/xdebug.ini && \
     phpenmod -v 7.0 xdebug && \
     # Install uopz
     curl -sLo /usr/lib/php/20151012/uopz.so http://files.docker.genee.in/php-20151012/uopz.so && \
