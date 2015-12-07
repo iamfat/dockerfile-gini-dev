@@ -6,11 +6,13 @@ ENV DEBIAN_FRONTEND noninteractive
 # Install bash-completion and vim for easier use
 RUN apt-get update && apt-get install -y procps bash-completion vim
 
-# Install XDebug
-RUN apt-get install -y php5-xdebug
-
-# Install uopz
-RUN curl -sLo /usr/lib/php/20151012/uopz.so http://files.docker.genee.in/php-20151012/uopz.so && \
+RUN \
+    # Install XDebug
+    curl -sLo /usr/lib/php/20151012/xdebug.so http://files.docker.genee.in/php-20151012/xdebug.so && \
+    echo "extension=xdebug.so" > /etc/php/mods-available/xdebug.ini && \
+    phpenmod -v 7.0 xdebug && \
+    # Install uopz
+    curl -sLo /usr/lib/php/20151012/uopz.so http://files.docker.genee.in/php-20151012/uopz.so && \
     printf "; priority=99\nzend_extension=uopz.so" > /etc/php5/mods-available/uopz.ini && \
     phpenmod -v 7.0 uopz
 
