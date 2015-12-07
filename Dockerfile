@@ -13,7 +13,7 @@ RUN \
     phpenmod -v 7.0 xdebug && \
     # Install uopz
     curl -sLo /usr/lib/php/20151012/uopz.so http://files.docker.genee.in/php-20151012/uopz.so && \
-    printf "; priority=99\nzend_extension=uopz.so" > /etc/php5/mods-available/uopz.ini && \
+    printf "; priority=99\nzend_extension=uopz.so" > /etc/php/mods-available/uopz.ini && \
     phpenmod -v 7.0 uopz
 
 # Install PHPUnit and PHP-CS-Fixer
