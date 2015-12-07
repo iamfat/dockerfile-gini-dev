@@ -1,4 +1,4 @@
-FROM genee/gini
+FROM genee/gini:php7
 MAINTAINER maintain@geneegroup.com
 
 ENV DEBIAN_FRONTEND noninteractive
@@ -10,9 +10,9 @@ RUN apt-get update && apt-get install -y procps bash-completion vim
 RUN apt-get install -y php5-xdebug
 
 # Install uopz
-RUN curl -sLo /usr/lib/php5/20131226/uopz.so http://files.docker.genee.in/php-20131226/uopz.so && \
+RUN curl -sLo /usr/lib/php/20151012/uopz.so http://files.docker.genee.in/php-20151012/uopz.so && \
     printf "; priority=99\nzend_extension=uopz.so" > /etc/php5/mods-available/uopz.ini && \
-    php5enmod uopz
+    phpenmod -v 7.0 uopz
 
 # Install PHPUnit and PHP-CS-Fixer
 RUN composer global require -q --prefer-dist 'phpunit/phpunit:@stable' 'fabpot/php-cs-fixer:@stable'
