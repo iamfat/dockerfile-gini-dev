@@ -1,10 +1,10 @@
 FROM genee/gini:alpine
-MAINTAINER iamfat@gmail.com
+MAINTAINER Jia Huang <iamfat@gmail.com>
 
-ENV GINI_ENV="development"
+ENV GINI_ENV development
 
 # Install bash-completion and vim for easier use
-RUN apk add bash-completion vim
+RUN apk update && apk add bash-completion vim
 
 # Install XDebug
 RUN curl -sLo /usr/lib/php/modules/xdebug.so http://files.docker.genee.in/php5/xdebug.so && \
