@@ -1,6 +1,8 @@
 FROM genee/gini:alpine
 MAINTAINER iamfat@gmail.com
 
+ENV GINI_ENV="development"
+
 # Install bash-completion and vim for easier use
 RUN apk add bash-completion vim
 
@@ -26,5 +28,4 @@ RUN apk add unzip openjdk7-jre && \
     mv /tmp/sonar-runner-2.4 /usr/local/share/sonar-runner && \
     echo 'export PATH="/usr/local/share/sonar-runner/bin:$PATH"' >> /etc/profile.d/sonar-runner.sh
 
-# Set ENV to "development"
-RUN echo "export GINI_ENV=development">>/etc/profile.d/gini.sh
+RUN rm -rf /var/cache/apk/*
