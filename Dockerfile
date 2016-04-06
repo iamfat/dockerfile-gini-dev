@@ -4,7 +4,7 @@ MAINTAINER Jia Huang <iamfat@gmail.com>
 ENV GINI_ENV development
 
 # Install bash-completion and vim for easier use
-RUN apk update && apk add bash-completion vim
+RUN apk add --update bash bash-completion vim && rm -rf /var/cache/apk/*
 
 # Install XDebug
 RUN curl -sLo /usr/lib/php/modules/xdebug.so http://files.docker.genee.in/php5/xdebug.so && \
@@ -18,7 +18,9 @@ RUN curl -sLo /usr/lib/php/modules/uopz.so http://files.docker.genee.in/php5/uop
 RUN composer global require -q --prefer-dist 'phpunit/phpunit:@stable' 'fabpot/php-cs-fixer:@stable'
 
 # Install "git-up"
-RUN apk add py-pip && pip install -U pip && pip install git-up
+RUN apk add --update py-pip && \
+    pip install -U pip && pip install git-up && \
+    apk del py-pip && rm -rf /var/cache/apk/*
 
 # Install SonarQube Runner
 RUN apk add unzip openjdk7-jre && \
@@ -26,6 +28,5 @@ RUN apk add unzip openjdk7-jre && \
         http://repo1.maven.org/maven2/org/codehaus/sonar/runner/sonar-runner-dist/2.4/sonar-runner-dist-2.4.zip && \
     unzip sonar-runner-dist-2.4.zip -d /tmp && rm sonar-runner-dist-2.4.zip && \
     mv /tmp/sonar-runner-2.4 /usr/local/share/sonar-runner && \
-    echo 'export PATH="/usr/local/share/sonar-runner/bin:$PATH"' >> /etc/profile.d/sonar-runner.sh
-
-RUN rm -rf /var/cache/apk/*
+    echo 'export PATH="/usr/local/share/sonar-runner/bin:$PATH"' >> /etc/profile.d/sonar-runner.sh && \
+    rm -rf /var/cache/apk/*
