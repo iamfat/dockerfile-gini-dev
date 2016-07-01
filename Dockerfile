@@ -29,6 +29,7 @@ RUN apt-get install -y unzip openjdk-7-jre-headless && \
     echo 'export PATH="/usr/local/share/sonar-runner/bin:$PATH"' >> /etc/profile.d/sonar-runner.sh
 
 # Set ENV to "development"
-RUN echo "export GINI_ENV=development">/etc/profile.d/gini.sh
+RUN echo "export GINI_ENV=development" >> /etc/profile.d/gini.sh && \
+    echo 'export PATH="/usr/local/share/gini/bin:$PATH"' >> /etc/profile.d/gini.sh
 
 RUN apt-get -y autoremove && apt-get -y autoclean && apt-get -y clean
