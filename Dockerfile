@@ -11,10 +11,6 @@ RUN apk add --no-cache less bash bash-completion vim
 RUN curl -sLo /usr/lib/php7/modules/xdebug.so http://files.docker.genee.in/php7/xdebug.so && \
     echo "zend_extension=xdebug.so" > /etc/php7/conf.d/xdebug.ini
 
-# Install uopz
-RUN curl -sLo /usr/lib/php7/modules/uopz.so http://files.docker.genee.in/php7/uopz.so && \
-    printf "; priority=99\nzend_extension=uopz.so" > /etc/php7/conf.d/uopz.ini
-
 # Install PHPUnit and PHP-CS-Fixer
 RUN composer global require -q --prefer-dist 'phpunit/phpunit:@stable' 'fabpot/php-cs-fixer:@stable'
 
