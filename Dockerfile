@@ -14,7 +14,7 @@ RUN export PHP_EXTENSION_PATH=php-$(echo '<?= PHP_VERSION_ID ?>'|php7) \
 
 
 # Install PHPUnit and PHP-CS-Fixer
-RUN composer global require -q --prefer-dist 'phpunit/phpunit:@stable' 'fabpot/php-cs-fixer:@stable'
+RUN composer global require -q 'phpunit/phpunit:@stable' 'friendsofphp/php-cs-fixer:@stable'
 
 # Install "git-up"
 RUN apk add --no-cache py-pip && \
