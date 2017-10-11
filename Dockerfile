@@ -4,23 +4,25 @@ MAINTAINER Jia Huang <iamfat@gmail.com>
 ENV GINI_ENV=development \
     SONAR_RUNNER_VERSION=3.0.1.733
 
+ADD pei /usr/local/share/pei
+
 # Install less and bash-completion and vim for easier use
 # Install XDebug
 # Install PHPUnit and PHP-CS-Fixer
 # Configure "git-up"
 # Install SonarQube Runner
 
-RUN apk add --no-cache less bash bash-completion vim\
-    && export PHP_EXTENSION_PATH=php-$(echo '<?= PHP_VERSION_ID ?>'|php7) \
-    && curl -sLo /usr/lib/php7/modules/xdebug.so "http://files.docker.genee.in/${PHP_EXTENSION_PATH}/xdebug.so" \
-      && printf "zend_extension=xdebug.so\n" > /etc/php7/conf.d/00_xdebug.ini \
+RUN apk update \
+    && apk add less bash bash-completion vim \
+    && pei xdebug \
     && composer global require -q 'phpunit/phpunit:@stable' 'friendsofphp/php-cs-fixer:@stable' \
     && git config --global alias.up 'pull --rebase --autostash' \
-    && apk add --no-cache unzip openjdk8-jre \
+    && apk add unzip openjdk8-jre \
       && curl -skLo /tmp/sonar-scanner-${SONAR_RUNNER_VERSION}.zip \
           https://sonarsource.bintray.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-${SONAR_RUNNER_VERSION}.zip \
       && unzip /tmp/sonar-scanner-${SONAR_RUNNER_VERSION}.zip -d /tmp \
       && rm /tmp/sonar-scanner-${SONAR_RUNNER_VERSION}.zip \
       && mv /tmp/sonar-scanner-${SONAR_RUNNER_VERSION} /usr/local/share/sonar-scanner \
-      && echo 'export PATH="/usr/local/share/sonar-scanner/bin:$PATH"' >> /etc/profile.d/sonar-scanner.sh
+      && echo 'export PATH="/usr/local/share/sonar-scanner/bin:$PATH"' >> /etc/profile.d/sonar-scanner.sh \
+    && rm -rf /var/cache/apk/*
 
