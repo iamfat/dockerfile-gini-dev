@@ -17,6 +17,8 @@ RUN apk update \
     && pei xdebug \
     && composer global require -q 'phpunit/phpunit:@stable' 'friendsofphp/php-cs-fixer:@stable' \
     && git config --global alias.up 'pull --rebase --autostash' \
+    && curl -sLo /etc/profile.d/git-prompt.sh \
+        https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh \
     && apk add unzip openjdk8-jre \
       && curl -skLo /tmp/sonar-scanner-${SONAR_RUNNER_VERSION}.zip \
           https://sonarsource.bintray.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-${SONAR_RUNNER_VERSION}.zip \
