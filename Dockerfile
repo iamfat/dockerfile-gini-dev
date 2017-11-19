@@ -15,7 +15,7 @@ ADD pei /usr/local/share/pei
 RUN apk update \
     && apk add less bash bash-completion vim \
     && pei xdebug \
-    && composer global require -q 'phpunit/phpunit:@stable' 'friendsofphp/php-cs-fixer:@stable' \
+    && composer global require -q 'phpunit/phpunit:@stable' 'friendsofphp/php-cs-fixer:@stable' 'behat/behat:@stable' 'phpspec/phpspec:@stable' \
     && git config --global alias.up 'pull --rebase --autostash' \
     && curl -sLo /etc/profile.d/git-prompt.sh \
         https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh \
