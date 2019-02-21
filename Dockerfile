@@ -27,5 +27,5 @@ RUN apk update \
       && mv /tmp/sonar-scanner-cli-${SONAR_RUNNER_VERSION} /usr/local/share/sonar-scanner-cli \
       && echo 'export PATH="/usr/local/share/sonar-scanner-cli/bin:$PATH"' >> /etc/profile.d/sonar-scanner.sh \
     && rm -rf /var/cache/apk/* \
-    && link -sf /bin/bash /bin/sh
+    && ln -sf /bin/bash /bin/sh
 
