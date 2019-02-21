@@ -20,12 +20,12 @@ RUN apk update \
     && curl -sLo /etc/profile.d/git-prompt.sh \
         https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh \
     && apk add unzip openjdk8-jre \
-      && curl -skLo /tmp/sonar-scanner-${SONAR_RUNNER_VERSION}.zip \
+      && curl -skLo /tmp/sonar-scanner-cli-${SONAR_RUNNER_VERSION}.zip \
         https://github.com/SonarSource/sonar-scanner-cli/archive/${SONAR_RUNNER_VERSION}.zip \
-      && unzip /tmp/sonar-scanner-${SONAR_RUNNER_VERSION}.zip -d /tmp \
-      && rm /tmp/sonar-scanner-${SONAR_RUNNER_VERSION}.zip \
-      && mv /tmp/sonar-scanner-${SONAR_RUNNER_VERSION} /usr/local/share/sonar-scanner \
-      && echo 'export PATH="/usr/local/share/sonar-scanner/bin:$PATH"' >> /etc/profile.d/sonar-scanner.sh \
+      && unzip /tmp/sonar-scanner-cli-${SONAR_RUNNER_VERSION}.zip -d /tmp \
+      && rm /tmp/sonar-scanner-cli-${SONAR_RUNNER_VERSION}.zip \
+      && mv /tmp/sonar-scanner-cli-${SONAR_RUNNER_VERSION} /usr/local/share/sonar-scanner-cli \
+      && echo 'export PATH="/usr/local/share/sonar-scanner-cli/bin:$PATH"' >> /etc/profile.d/sonar-scanner.sh \
     && rm -rf /var/cache/apk/* \
     && link -sf /bin/bash /bin/sh
 
