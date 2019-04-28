@@ -1,4 +1,4 @@
-FROM genee/gini:alpine
+FROM genee/gini:alpine-39
 MAINTAINER Jia Huang <iamfat@gmail.com>
 
 ENV GINI_ENV=development \
